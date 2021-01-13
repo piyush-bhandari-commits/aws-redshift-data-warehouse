@@ -49,6 +49,7 @@ def get_cluster_status(config, boto3_redshift):
     except Exception as e:
         print("Cluster status not found!!!", e)
         return None
-        
-        pass
+    
+    return status['Clusters'][0]
+    
     
