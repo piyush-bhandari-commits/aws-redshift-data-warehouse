@@ -1,7 +1,6 @@
 import configparser
-import psycopg2 as pg
 from queries import create_table_queries, drop_table_queries
-from utils import *
+from utils import connect_to_database
 
 def drop_tables(cur, conn):
     """
@@ -10,6 +9,7 @@ def drop_tables(cur, conn):
     for query in drop_table_queries:
         cur.execute(query)
         conn.commit()
+
 
 def create_tables(cur, conn):
     """
@@ -24,7 +24,7 @@ def main():
     """
     Create tables in the database
     """
-    conn = connect_to_redshift()
+    conn = connect_to_database()
     cur = conn.cursor()
 
     print("Droping tables in the database...")
@@ -34,6 +34,6 @@ def main():
     create_tables(cur, conn)
     
     conn.close()
-    
+
 if __name__ == "__main__":
     main()

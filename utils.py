@@ -5,14 +5,13 @@ def get_config():
     """
     Loads the configuration object from the config file
     """
-
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
     return config
 
 
-def connect_to_redshift():
+def connect_to_database():
     """
     Connects to redhift database
     """
@@ -25,9 +24,9 @@ def connect_to_redshift():
     DB_PORT = config.get('CLUSTER', 'DB_PORT')
     CONNECTION_STRING = "host={} dbname={} user={} password={} port={}".format(HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_PORT)
 
-    print("Connecting to Redshift...", CONNECTION_STRING)
+    print("Connecting to database...", CONNECTION_STRING)
     conn = pg.connect(CONNECTION_STRING)
-    print("Connection to Redshift is successful...")
+    print("Connection to database is successful...")
 
     return conn
 
